@@ -1,29 +1,37 @@
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require('cors')
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const cors = require("cors");
 
 const app = express();
-app.use(cors())
+app.use(cors());
 
-// router   
-const categoriesRouter = require('./app/api/v1/categories/router');
+//* router
+const categoriesRouter = require("./app/api/v1/categories/router");
 
-const v1 = '/api/v1/cms';
+//* middlewares
+const notFoundMiddleware = require("./app/middlewares/not-found");
+const handlerErrorMiddleware = require("./app/middlewares/handler-error");
 
-app.use(logger('dev'));
+const v1 = "/api/v1/cms";
+
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.get('/', (req,res)=>{
-    res.status(200).json({
-        message:'Welcome to api GoSeminar'
-    })
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Welcome to API GoSeminar!...",
+  });
 });
 
-app.use(v1, categoriesRouter)
+app.use(v1, categoriesRouter);
+
+//* use middleware
+app.use(notFoundMiddleware);
+app.use(handlerErrorMiddleware);
 
 module.exports = app;
