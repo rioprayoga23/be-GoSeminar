@@ -5,9 +5,9 @@ let categorySchema = Schema(
   {
     name: {
       type: String,
-      minlength: [3, "Panjang nama kategori minimal 3 karakter"],
-      maxLength: [20, "Panjang nama kategori maksimal 20 karakter"],
-      required: [true, "Nama kategori harus diisi"],
+      minlength: [3, "Minimum category name length: 3 characters"],
+      maxLength: [20, "Maximum category name length: 20 characters"],
+      required: [true, "Category name is required"],
     },
   },
   { timestamps: true }
