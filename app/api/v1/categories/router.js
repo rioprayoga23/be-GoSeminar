@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express();
-const { create, index, find, update, destroy } = require("./controler");
+const { create, index, find, update, destroy } = require("./controller");
 
 router.get("/categories", index);
 router.post("/categories", create);
