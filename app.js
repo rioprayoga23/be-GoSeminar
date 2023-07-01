@@ -10,6 +10,7 @@ app.use(cors());
 //* router
 const categoriesRouter = require("./app/api/v1/categories/router");
 const imagesRouter = require("./app/api/v1/images/router");
+const talentsRouter = require("./app/api/v1/talents/router");
 
 //* middlewares
 const notFoundMiddleware = require("./app/middlewares/not-found");
@@ -31,6 +32,7 @@ app.get("/", (req, res) => {
 
 app.use(v1, categoriesRouter);
 app.use(v1, imagesRouter);
+app.use(v1, talentsRouter);
 
 //* use middleware
 app.use(notFoundMiddleware);
