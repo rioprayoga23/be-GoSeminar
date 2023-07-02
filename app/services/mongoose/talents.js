@@ -31,7 +31,7 @@ const createTalents = async (req) => {
 
   const check = await Talents.findOne({ name });
 
-  if (check) throw new BadRequestError("Talent name duplicated");
+  if (check) throw new BadRequestError("Talent name duplicate");
 
   const result = await Talents.create({ name, image, role });
 
@@ -64,7 +64,7 @@ const updateTalents = async (req) => {
     _id: { $ne: id },
   });
 
-  if (check) throw new BadRequestError("Talent name duplicated");
+  if (check) throw new BadRequestError("Talent name duplicate");
 
   const result = await Talents.findOneAndUpdate(
     { _id: id },
